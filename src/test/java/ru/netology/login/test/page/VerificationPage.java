@@ -6,7 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static jdk.internal.org.objectweb.asm.util.CheckClassAdapter.verify;
+
 
 public class VerificationPage {
     private final SelenideElement codeField = $("[data-test-id='code'] input");
@@ -14,7 +14,7 @@ public class VerificationPage {
     private final SelenideElement errorNotification = $("[data-test-id='error-notification'] .notification__content");
 
 
-    public void VerificationPage() {
+    public void verifyVerificationPageVisiblity() {//verificationPage
         codeField.shouldBe(visible);
     }
 
@@ -23,8 +23,7 @@ public class VerificationPage {
     }
 
     public DashboardPage validVerify(String verificationCode) {
-        //codeField.setValue(verificationCode);
-        // verifyButton.click();
+
         verify(verificationCode);
         return new DashboardPage();
     }

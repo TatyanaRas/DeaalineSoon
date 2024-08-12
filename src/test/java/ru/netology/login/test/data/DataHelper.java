@@ -1,12 +1,12 @@
 package ru.netology.login.test.data;
 
 import com.github.javafaker.Faker;
-import io.opentelemetry.sdk.metrics.data.Data;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Value;
-
 import java.util.Locale;
+
 
 public class DataHelper {
     private static final Faker FAKER = new Faker(new Locale("en"));
@@ -15,11 +15,7 @@ public class DataHelper {
 
     }
 
-    // public static String getVerificationCode() {
-    //     return "12345";
-    //  }
-
-    public static AuthInfo getAuthInfo() {
+        public static AuthInfo getAuthInfo() {
         return new AuthInfo("vasya", "qwerty123");
     }
 
@@ -49,9 +45,11 @@ public class DataHelper {
         String password;
     }
 
+
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
+
     public static class VerificationCode {
         String code;
     }
