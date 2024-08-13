@@ -1,10 +1,7 @@
 package ru.netology.login.test.page;
 
 import com.codeborne.selenide.SelenideElement;
-
 import ru.netology.login.test.data.DataHelper;
-
-
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;

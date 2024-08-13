@@ -50,8 +50,11 @@ public class DataHelper {
     @NoArgsConstructor
     @AllArgsConstructor
 
+
     public static class VerificationCode {
         String code;
+
+
     }
 
 }

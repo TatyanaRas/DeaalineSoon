@@ -1,17 +1,16 @@
 package ru.netology.login.test.test;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 
 import ru.netology.login.test.data.DataHelper;
 import ru.netology.login.test.data.SQLHelper;
 import ru.netology.login.test.page.LoginPage;
+import ru.netology.login.test.page.VerificationPage;
 
 import static com.codeborne.selenide.Selenide.open;
 import static ru.netology.login.test.data.SQLHelper.cleanAuthCodes;
+import static ru.netology.login.test.data.SQLHelper.cleanDatabase;
 
 
 public class LoginTest {
@@ -19,12 +18,12 @@ public class LoginTest {
 
     @AfterEach
     void tearDown() {
-        cleanAuthCodes();
+   //     cleanAuthCodes();
     }
 
-    @AfterEach
-    void tearDownAll() {
-        cleanDataBase();
+    @AfterAll
+    static void tearDownAll() {
+     //   cleanDatabase();
     }
 
     @BeforeEach
@@ -38,9 +37,11 @@ public class LoginTest {
     //валидные данные пользователя и верный код
     @DisplayName("Should successfully login to dashboard with exist login and password from sut test data")
     void shouldSuccessfulLogin() {
+
         var authInfo = DataHelper.getAuthInfo();
         var verificationPage = loginPage.validLogin(authInfo);
         verificationPage.verifyVerificationPageVisiblity();
+
         var verificationCode = SQLHelper.getVerificationCode();
         verificationPage.validVerify(verificationCode);
     }
@@ -55,17 +56,21 @@ public class LoginTest {
         loginPage.verifyErrorNotification("Ошибка! Неверно указан логин или пароль");
     }
 
-   @Test
+  @Test
 
     //валидные данные пользователя а код неверный
     @DisplayName("Should get error notification if login with exist in base and active user and random verification code")
     void shouldGetErrorNotificationUserRandomVerificationCode() {
-        var authInfo = DataHelper.getAuthInfo();
-        var verificationPage = loginPage.validLogin(authInfo);
-        verificationPage.verifyVerificationPageVisiblity();
+
+       var authInfo = DataHelper.getAuthInfo();
+       var verificationPage = loginPage.validLogin(authInfo);
+       verificationPage.verifyVerificationPageVisiblity();
+
         var verificationCode = DataHelper.generateRandomVerificationCode();
+      //  verificationPage.verify(SQLHelper.getVerificationCode());
         verificationPage.verify(verificationCode.getCode());
         verificationPage.verifyErrorNotification("Ошибка! Неверно указан код! Попробуйте ещё раз.");
 
     }
+
 }
