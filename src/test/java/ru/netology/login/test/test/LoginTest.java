@@ -18,12 +18,12 @@ public class LoginTest {
 
     @AfterEach
     void tearDown() {
-   //     cleanAuthCodes();
+       cleanAuthCodes();
     }
 
     @AfterAll
     static void tearDownAll() {
-     //   cleanDatabase();
+        cleanDatabase();
     }
 
     @BeforeEach
